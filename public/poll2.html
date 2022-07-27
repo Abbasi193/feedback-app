@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: rgb(231, 223, 250);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+
+
+        }
+
+        h1 {
+            background-color: white;
+            font-size: 25px;
+            text-align: center;
+            padding: 40px;
+            width: 50%;
+            margin: auto;
+            border-top: 8px solid rgb(70, 25, 121);
+            border-left: 8px solid rgb(9, 150, 168);
+            border-radius: 15px;
+            box-shadow: 5px blue;
+        }
+
+        .Surname {
+            width: 250px;
+            height: 30px;
+            font-size: 15px;
+            border-top: none;
+            border-right: none;
+            border-left: none;
+
+            border-bottom: 1px dotted rgb(70, 25, 121);
+        }
+
+        .SBut {
+            color: white;
+            background-color: teal;
+            width: 90px;
+            height: 40px;
+            font-size: 15px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .SBut:disabled {
+            opacity: 0.5;
+
+        }
+
+        #main1 {
+            background-color: white;
+            padding: 20px;
+            width: 50%;
+            text-align: center;
+            margin: auto;
+            margin-top: 20px;
+
+            border-radius: 100px;
+            border: 5px double rgb(56, 4, 107);
+        }
+
+        .hid {
+            width: 100%;
+            text-align: center;
+            font-size: 15px;
+            height: 30px;
+            border-top: none;
+            border-right: none;
+            border-left: none;
+
+            border-bottom: 2px inset rgb(173, 173, 177);
+        }
+
+        .optio {
+            width: 20px;
+            font-size: 15px;
+            text-align: center;
+            height: 20px;
+            margin: 5px;
+
+            border: 2px inset rgb(173, 173, 177);
+        }
+
+        .ente {
+            background-color: teal;
+            color: white;
+
+            width: 20%;
+            height: 40px;
+            font-size: 15px;
+            border-radius: 20px;
+            margin-top: 15px;
+
+            border: none;
+            cursor: pointer;
+        }
+
+        .add {
+            background-color: rgb(56, 4, 107);
+            color: white;
+
+            width: 20%;
+            height: 40px;
+            font-size: 18px;
+            border-radius: 10px;
+            margin-top: 15px;
+            display: inline-block;
+            text-align: center;
+            margin: auto;
+            border: none;
+            cursor: pointer;
+        }
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 55%;
+            height: 200px;
+            margin-bottom: 10px;
+        }
+
+        .end {
+            float: right;
+            background-color: rgb(56, 4, 107);
+            color: white;
+
+            width: 15%;
+            height: 40px;
+            font-size: 17px;
+            border-radius: 10px;
+
+            cursor: pointer;
+        }
+    </style>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+        $.get("/getpolls", function (data, status) {
+
+            polls = JSON.parse(data.polls)
+            console.log(polls)
+            for (poll of polls) {
+                var x = $(`<div>
+                            <label class="rem" name="opt">${poll.name}</label><br>
+                            ${poll.c1} <input class="optio" type="radio" name="c" id="c1" value="${poll.c1}">
+                            ${poll.c2} <input class="optio" type="radio" name="c" id="c1" value="${poll.c2}">
+                            <input onclick="vote(this,'${poll._id}')" type="button" id="ente1" class="ente" name="b1" value="Submit">
+                        </div><br>`)
+                x.appendTo($('#main1'))
+            }
+        }
+        );
+    })
+    function vote(x, id) {
+        var op = $('input[name="c"]:checked').val();
+        $.post("/poll", { pid: id, op }, function (data, status) {
+            x.parentNode.remove()
+        }
+        );
+    }
+</script>
+
+<body>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlxtGtXQ2qHPMbcLVPJL9sqhVABP3EAgbKcA&usqp=CAU"
+        alt="pic">
+
+    <h1 class="name">Poll
+    </h1>
+    <div id="main1">
+
+
+    </div><br>
+    <a href='/' class='home'>Back to the Home Page</a>
+
+
+</body>
+
+</html>

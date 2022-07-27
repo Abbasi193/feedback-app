@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      body{
+        background-color: rgb(231, 223, 250);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        
+       
+      }
+      h1{
+        background-color: white;
+        font-size: 25px;
+        text-align: center;
+        padding: 40px;
+        width: 50%;
+        margin: auto;
+        border-top: 8px solid rgb(70, 25, 121);
+        border-left: 8px solid rgb(9, 150, 168);
+        border-radius: 15px;
+        box-shadow: 5px blue;
+      }
+      .Surname{
+        width: 250px;
+        height: 30px;
+        font-size: 15px;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        
+        border-bottom: 1px dotted rgb(70, 25, 121);
+      }
+      .SBut{
+        color: white;
+        background-color: teal;
+        width: 90px;
+        height: 40px;
+        font-size: 15px;
+        border-radius: 20px;
+        border: none;
+        cursor: pointer;
+      }
+      .SBut:disabled{
+        opacity: 0.5;
+
+      }
+      .main1{
+        background-color: white;
+        padding: 40px;
+        width: 50%;
+        text-align: center;
+        margin: auto;
+        margin-top: 20px;
+        
+        border-radius: 100px;
+        border: 5px double rgb(56, 4, 107);
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      }
+      .hid{
+        width: 100%;
+        text-align: center;
+        font-size: 15px;
+        height: 30px;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        
+        border-bottom: 2px inset rgb(173, 173, 177);
+      }
+      .optio{
+        width: 30%;
+        font-size: 15px;
+        text-align: center;
+        height: 30px;
+        margin: 5px;
+        
+        border: 2px inset rgb(173, 173, 177);
+      }
+      .ente{
+        background-color: teal;
+        color: white;
+        
+        width: 20%;
+        height: 40px;
+        font-size: 15px;
+        border-radius: 20px;
+        margin-top: 15px;
+        
+        border: none;
+        cursor: pointer;
+      }
+      .add{
+        background-color: rgb(56, 4, 107);
+        color: white;
+        
+        width: 20%;
+        height: 40px;
+        font-size: 18px;
+        border-radius: 10px;
+        margin-top: 15px;
+        display: inline-block;
+        text-align: center;
+        margin: auto;
+        border: none;
+        cursor: pointer;
+      }
+      img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 55%;
+        height: 200px;
+        margin-bottom: 10px;
+      }
+      .end{
+        float:right;
+        background-color: rgb(56, 4, 107);
+        color: white;
+        
+        width: 15%;
+        height: 40px;
+        font-size: 17px;
+        border-radius: 10px;
+        
+        cursor: pointer;
+      }
+    </style>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    var k = 1
+    //var l = 1
+    
+$(document).ready(function(){
+    
+  $(".add").click(function(){
+    $(".ente").before("<br />&nbsp;<br />&nbsp;<br />")
+      d = document.createElement('div')
+      $(".ente").before(d)
+      
+      
+      k = k+1
+      $(d).addClass("main"+k)
+      $(".ente").before(`<label class='lab'>Question No. 0${k}</label>`)
+      $(".ente").before("<br />")
+      $(".lab").attr("name","ques"+k)
+      
+      
+      var u = $(`<input type = "text" name = "ques${k}" class="hid" id = "hid${k}" placeholder= "Enter Your Question here...">`)
+      $(".ente").before(u)
+      
+   
+      $(".ente").before("<br />&nbsp;<br />&nbsp;<br />")
+      $(".ente").before(`<label class='rem' name = 'opt'>Enter Options Here</label>`)
+      $(".ente").before("<br />")
+
+      for(j=1; j<=4; j++){
+        var u = $(`<input type = "text" name = "op${j}" class = "optio" placeholder= "Enter Option...">`)
+        $(".ente").before(u)
+        $(".ente").before("<br />")
+      }
+      //$(this).before(`<input type='submit' id='ente${k}' name = 'b${k}' class = 'ente' value='Create Question'>`)
+      //console.log($(".ente"))
+      //$(`input[name = "b${k}"]`).addClass("ente")
+      $(".ente").before("<br />&nbsp;<br />")
+      
+     // $(this).before(br)
+     $(".optio").show()
+     $(".optio").val("")
+     $(".hid").show();
+     
+      $(`input[name = "ques${k}"]`).removeClass("lab")
+      $(`input.ente`).show()
+
+      //alert("Hello")
+  })
+});
+
+$(document).ready(function(){
+        
+        $(`input.ente`).click(function(){
+         // $(this).click(function(){
+
+         
+           // console.log("Hello")
+            //console.log(this)
+            var question = $(".hid").val()
+            console.log(question)
+            $(".hid").val("")
+            Sur_name = $(".Surname").val()
+            
+            //alert(text)
+            var option = []
+            i=0
+            $(".optio").each(function(){
+                option[i++] = $(this).val()
+                
+           })
+            console.log(option)
+            $.post("/admin",
+            {
+              Sname: Sur_name,
+              ques: question,
+              op1: option[0],
+              op2: option[1],
+              op3: option[2],
+              op4: option[3]
+
+            })
+           $(".optio").remove()
+           $(".rem").hide()
+            
+            
+
+            $(`#hid${k}`).before("<b>(Question Added successfully)</b>")
+            $(".hid").remove();
+            //$(`hid${k}`).removeClass("hid")
+
+            $(this).hide()
+            //l = l+1
+      //    })
+  });
+});
+$(document).ready(function(){
+  $(".end").click(function(){
+    $(this).after("<h1>Questions Ended</h>")
+      $(this).remove()
+      $(".add").remove()
+  })
+})
+
+$(document).ready(function(){
+  $(".SBut").click(function(){
+      var value = $(".Surname").val()
+      console.log(value)
+      $(".Surname").after(value)
+     // $(this).hide()
+      $(".Surname").hide()
+      //$(".name").append(value)
+      $(this).attr("disabled",true)
+      //$(value).after($(this).show())
+  })
+})
+</script>
+<body>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlxtGtXQ2qHPMbcLVPJL9sqhVABP3EAgbKcA&usqp=CAU" alt="pic">
+  <h1 class="name">Survey Name : 
+  <input class="Surname" type="text" placeholder="Enter Survey Name Here....">
+    <button class="SBut">Enter</button></h1>
+    <div class="main1">
+
+
+        
+            <label name="ques1">Question No. 01</label><br>
+            <input class = "hid" id="hid1" type="text" name="q1" placeholder="Enter Your Question here...">
+            
+            <br><br><br>
+            <label class="rem" name="opt">Enter Options Here</label><br>
+            <input class="optio" type="text" name="op1" placeholder="Enter Option...">
+           <br>
+
+            <input class="optio" type="text" name="op2" placeholder="Enter Option...">
+            <br>
+
+            <input class="optio" type="text" name="op3" placeholder="Enter Option...">
+            <br>
+
+            <input class="optio" type="text" name="op4" placeholder="Enter Option...">
+            <br>
+            <input type="button" id="ente1" class="ente" name="b1" value="Create Question">
+        
+    </div><br>
+        <input type="button" value="Add One more Question" class="add">
+        <input type="button" class="end" value="End Questions">
+    
+    
+</body>
+
+</html>

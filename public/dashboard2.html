@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dashboard_user</title>
+    <style>
+        body {
+    margin:0;
+    background-color: rgb(197, 235, 235);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    padding: 0;
+}
+
+.dash{
+    width: 14%;
+    
+    background-color: teal;
+    color: white;
+    padding: 20px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    
+}
+img{
+    display: inline;
+    width: 80px;
+    height: 70px;
+    margin: auto;
+}
+.guest{
+    float: right;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top: 4px;
+    
+
+}
+.guest img{
+    border-radius: 35px;
+    width: 65px;
+    height: 60px;
+}
+.top{
+   
+    display: inline;
+  
+}
+.sec{
+    
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    background-color: teal;
+   padding: 15px;
+    color: white;
+    border-radius: 40px;
+    font-size: 30px;
+    
+}
+.dashList{
+    margin-top: -100px;
+}
+
+ul {
+  list-style-type: none;
+  
+  margin: 0;
+  padding: 0;
+  
+  overflow: hidden;
+  background-color: teal;
+  margin-top: -28px;
+    color: white;
+  width: 100%;
+}
+
+li {
+  float: left;
+}
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: rgb(1, 26, 26);
+  padding-top: 21px;
+  padding-bottom: 21px;
+}
+
+
+.active {
+  background-color: rgb(1, 46, 46);
+  padding-top: 21px;
+  padding-bottom: 21px;
+  color: white;
+}
+
+.user{
+    float: right;
+    color: white;
+    
+    text-align: center;
+    margin-right: 20px;
+    margin-top: 20px;
+    font-size: 25px;
+}
+    </style>
+</head>
+<body>
+    <div class="head"> 
+        <div class="sec">
+     
+     <h1 class = "top">Infinity Polls</h1></div>
+     
+ <div class="dashList">
+     <h1 class="dash">Dashboard</h1>
+ <ul>
+     
+  <li><a href="/dashboard">Home</a></li>
+  
+  <li><a href="/survey">Survey</a></li>
+  <li><a href="/poll">Polls</a></li>
+  <li><a href="/feedback">Feedback</a></li>
+  <li><a href="/logout">Log Out</a></li>
+   
+   <li class="guest"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvts5aHBstDkR8PigS4RmZkbZy78zpZoSuOw&usqp=CAU" alt="pic"></li>
+   <li class='user'>User</li>
+ </ul></div>
+ </div>
+</body>
+</html>

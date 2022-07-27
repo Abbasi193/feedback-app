@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    margin:0;
+    background-color: rgb(197, 235, 235);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    padding: 0;
+}
+
+.dash{
+    width: 14%;
+    
+    background-color: teal;
+    color: white;
+    padding: 20px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    
+}
+img{
+    display: inline;
+    width: 80px;
+    height: 70px;
+    margin: auto;
+}
+.guest{
+    float: right;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top: 4px;
+    
+
+}
+.guest img{
+    border-radius: 35px;
+    width: 65px;
+    height: 60px;
+}
+.top{
+   
+    display: inline;
+  
+}
+.sec{
+    
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    background-color: teal;
+   padding: 15px;
+    color: white;
+    border-radius: 40px;
+    font-size: 30px;
+    
+}
+.dashList{
+    margin-top: -100px;
+}
+
+ul {
+  list-style-type: none;
+  
+  margin: 0;
+  padding: 0;
+  
+  overflow: hidden;
+  background-color: teal;
+  margin-top: -28px;
+    color: white;
+  width: 100%;
+}
+
+li {
+  float: left;
+}
+h2{
+    text-align: center;
+    font-size: 50px;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: rgb(1, 26, 26);
+  padding-top: 21px;
+  padding-bottom: 21px;
+}
+[class^="a"]{
+    text-decoration: none;
+    color: black;
+    
+}
+[class^="card"]{
+    background-color: white;
+    width: 20%;
+    margin: 40px;
+    padding: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  display: inline-block;
+  border-radius: 20px;
+  text-align: center;
+}
+[class^="card"]:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    border: 3px solid teal;
+}
+
+.active {
+  background-color: rgb(1, 46, 46);
+  padding-top: 21px;
+  padding-bottom: 21px;
+  color: white;
+}
+
+.admin{
+    float: right;
+    color: white;
+    
+    text-align: center;
+    margin-right: 25px;
+    margin-top: 20px;
+    font-size: 25px;
+}
+hr{
+    color: rgb(194, 240, 240);
+}
+</style>
+</head>
+<body>
+   <div class="head"> 
+       <div class="sec">
+    
+    <h1 class = "top">Infinity Polls</h1></div>
+    
+<div class="dashList">
+    <h1 class="dash">Dashboard</h1>
+<ul>
+    
+  <li><a href="/dashboard">Home</a></li>
+  
+  <li><a href="/createsurvey">Create Survey</a></li>
+  <li><a href="/createpoll">Create Polls</a></li>
+  <li><a href="/logout">Log Out</a></li>
+  
+  <li class="guest"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvts5aHBstDkR8PigS4RmZkbZy78zpZoSuOw&usqp=CAU" alt="pic"></li>
+  <li class='admin'>Admin</li>
+</ul></div>
+</div>
+<h2>Surveys Results</h2>
+    <a class = 'a1' href="survey1.html" target="_blank"><div class="card1">
+        <p><b>Survey No. 1</b></p><hr>
+        <p>Survey Name : Survey 1</p>
+         
+    </div></a>
+    <a class = 'a2' href="survey2.html" target="_blank"><div class="card2">
+        <p><b>Survey No. 2</b></p><hr>
+        <p>Survey Name : Survey 2</p>
+         
+    </div></a>
+    <a class = 'a3' href="survey3.html" target="_blank"><div class="card3">
+        <p><b>Survey No. 3</b></p><hr>
+        <p>Survey Name : Survey 3</p>
+         
+    </div></a>
+    
+
+</body>
+</html>

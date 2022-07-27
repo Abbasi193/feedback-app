@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+        background-color: rgb(231, 223, 250);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+      }
+
+    /*  .end{
+          background-color: white;
+          text-align: center;
+          padding: 30px;
+          width: 50%;
+          margin: auto;
+          margin-top: 0;
+          font-size: 50px;
+          border-radius: 50px;
+          border : 10px solid rgb(70, 25, 121);
+      }*/
+      img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 53%;
+        height: 250px;
+        margin-bottom: 10px;
+        margin-top: 0%;
+        margin-bottom: 0%;
+        margin-top: 5px;
+        
+      }
+        .bloc0{
+        
+        width: 50%;
+        margin: auto;
+        background-color: white;
+        border-radius: 100px;
+        padding: 30px;
+        padding-top: 0px;
+        padding-bottom: 100px;
+        border: 5px double rgb(56, 4, 107);
+        font-size: 13px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      }
+     
+      .sur{
+          padding: 30px;
+          border-radius: 15px;
+          border-top: 8px solid rgb(70, 25, 121);
+          border-left: 8px solid rgb(9, 150, 168);
+          width: 50%;
+        margin: auto;
+        background-color: white;
+        margin-top: -15px;
+        font-size: 25px;
+        text-align: center;
+        font-weight: normal;
+
+
+      }
+      input[type = "radio"]{
+         
+          margin-left: 25px;
+          margin-right: 5px;
+          cursor: pointer;
+         
+      }
+      .button{
+          float: right;
+          
+          border-radius: 10px;
+          color: white;
+          background-color: teal;
+          border: white;
+          width: 90px;
+          height: 40px;
+          font-size: 15px;
+          cursor: pointer;
+      }
+      .the{
+          font-family: 'Times New Roman', Times, serif;
+          width: 50%;
+          margin: auto;
+          background-color: white;
+          font-size: 40px;
+          border: 8px double rgb(56, 4, 107);
+          padding: 30px;
+          border-radius: 30px;
+          text-align: center;
+          font-weight: bold;
+          margin-top: 50px;
+
+      }
+      .home{
+          margin: auto;
+          padding: 20px;
+          color: white;
+          background-color: rgb(90, 4, 148);
+          border-radius: 8px;
+          border: white;
+          font-size: 17px;
+          display: flex;  
+          justify-content: center;  
+          align-items: center;
+          margin-top: 5px;
+          cursor: pointer;
+      }
+      .qu{
+          font-size: 23px;
+          text-align: center;
+          /*border-bottom: 3px inset black;*/
+      }
+    </style>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+var j = 1
+var k = 1
+
+    $.getJSON("/getsurvey",function(data,status){
+        
+        console.log(data)
+        var len = $(data).length
+        console.log(len)
+        //console.log(data[0].Question)
+        var Survey_name = data[len-1].Survey_name;
+        console.log(data[len-1].Survey_name)
+        $(".name").append(`<p class='sur'><b>Survey Name : </b>${Survey_name}</p>`)
+         for(var i=0; i<len; i++){
+             var ques = data[i].Question;
+             var op1 = data[i].Option1;
+             var op2 = data[i].Option2;
+             var op3 = data[i].Option3;
+             var op4 = data[i].Option4;
+             
+            // $('.rem').before("<br />")
+             $(`.bloc${j}`).append(`<b><label id='rem${j}' class='rem'>${j}. ${ques}</label></b>`)
+             $(`#rem${j}`).after("<br />")
+             $(`.bloc${j}`).append(`<input type='radio' name='option${j}' class='rad' value='${op1}'>${op1}</input>`)
+             
+             $(`.bloc${j}`).append(`<input type='radio' name='option${j}' class='rad' value='${op2}'>${op2}</input>`)
+             $(`.bloc${j}`).append(`<input type='radio' name='option${j}' class='rad' value='${op3}'>${op3}</input>`)
+             $(`.bloc${j}`).append(`<input type='radio' name='option${j}' class='rad' value='${op4}'>${op4}</input>`)
+             $(`.bloc${j}`).append("<hr>")
+             $(`.bloc${j}`).after(`<div class = 'bloc${j+1}''></div>`)
+             $(`.bloc${j}`).after("<br />")
+             j++
+
+         }
+         $(`.bloc${j}`).after("<input type='button' value='Submit' class='button'>")
+
+         $(document).ready(function(){
+             $(".button").click(function(){
+                 var check = []
+                 i=0
+                 $(".rad:checked").each(function(){
+                     check[i] = $(this).val()
+                     k++;
+                     i++;
+                 })
+                 console.log(check)
+
+                 $.post("/survey",{checke: check})
+
+                 $("div").hide()
+                 $("input").hide()
+                 $("img").hide()
+                 $(".name").hide()
+                 $("body").append("<p class='the'>Survey Form Submitted. Thank You !!</p>")
+                 $("body").append("<a href='/' class='home'>Back to the Home Page</a>")
+                 
+
+                 
+                 
+             })
+         })
+         
+       // alert(status)
+    })
+
+</script>
+<body>
+    <!--<h1 class="end">Survey Fill up Form </h1>-->
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlxtGtXQ2qHPMbcLVPJL9sqhVABP3EAgbKcA&usqp=CAU" alt="image">
+    <h1 class="name"></h1>
+    <div class="bloc0"><div class = "bloc1"><h1 class="qu">Questions</h1></div></div>
+</body>
+</html>
